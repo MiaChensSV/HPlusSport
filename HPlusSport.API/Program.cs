@@ -1,4 +1,7 @@
 
+using HPlusSport.API.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace HPlusSport.API
 {
     public class Program
@@ -13,6 +16,9 @@ namespace HPlusSport.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<ShopContext>(options =>
+                options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
